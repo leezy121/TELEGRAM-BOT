@@ -6,7 +6,7 @@ import threading
 app = Flask(__name__)
 
 # Your bot token here
-TOKEN = '7544072344:AAEq9jwGyXCysq662Gy_u8kS7quhA4DIWc4'
+TOKEN = '7012072031:AAFnXWppm1zm8BRCr1SK6VR9TuBd_HxIwaE'
 bot = telebot.TeleBot(TOKEN)
 
 # Dictionary to store user data
