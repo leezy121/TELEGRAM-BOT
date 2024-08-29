@@ -1,6 +1,7 @@
 from flask import Flask, request
 import telebot
 from telebot import types
+import threading
 
 app = Flask(__name__)
 
@@ -14,8 +15,7 @@ user_data = {}
 # Function to create the main menu keyboard
 def create_main_menu_markup():
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    markup.add('Tasks', 'Balance', 'Get Referral Code', 'Withdrawal', 'Logout',
-               'Main Menu')
+    markup.add('Tasks', 'Balance', 'Get Referral Code', 'Withdrawal', 'Logout', 'Main Menu')
     return markup
 
 # Function to create the tasks menu keyboard
@@ -41,12 +41,16 @@ def webhook():
     bot.process_new_updates([update])
     return 'OK', 200
 
-# Set webhook
 def set_webhook():
-    url = 'https://telegram-bot-2-k7tg.onrender.com'  # Replace with your actual Render service URL
+    url = 'https://telegram-bot-2-k7tg.onrender.com/webhook'  # Replace with your actual Render service URL
     response = bot.set_webhook(url=url)
-    print(response)
+    print('Webhook set:', response)
+
+def run_flask():
+    app.run(host='0.0.0.0', port=10000)
 
 if __name__ == '__main__':
-    set_webhook()
-    app.run(host='0.0.0.0', port=10000)
+    # Start the webhook setup in a separate thread
+    threading.Thread(target=set_webhook).start()
+    # Run the Flask app
+    run_flask()
