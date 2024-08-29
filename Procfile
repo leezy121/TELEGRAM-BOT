@@ -45,10 +45,10 @@ def webhook():
 
 # Set webhook
 def set_webhook():
-    url = f'https://your-render-service-url.com/webhook'
+    url = 'https://telegram-bot-m6q7.onrender.com/webhook'
     response = bot.set_webhook(url=url)
     print(response)
 
 if __name__ == '__main__':
     set_webhook()
-    app.run(port=5000)
+    app.run(host='0.0.0.0', port=10000)
