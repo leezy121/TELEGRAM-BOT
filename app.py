@@ -2,6 +2,7 @@ from flask import Flask, request
 import telebot
 from telebot import types
 import threading
+import os  # Import os to use environment variables
 
 app = Flask(__name__)
 
@@ -47,7 +48,8 @@ def set_webhook():
     print('Webhook set:', response)
 
 def run_flask():
-    app.run(host='0.0.0.0', port=10000)
+    port = int(os.environ.get("PORT", 10000))  # Use the PORT environment variable if available
+    app.run(host='0.0.0.0', port=port)
 
 if __name__ == '__main__':
     # Start the webhook setup in a separate thread
