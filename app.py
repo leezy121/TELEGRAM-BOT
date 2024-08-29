@@ -43,7 +43,7 @@ def webhook():
 
 # Set webhook
 def set_webhook():
-    url = f'https://your-render-service-url.com/webhook'
+    url = 'https://telegram-bot-m6q7.onrender.com'  # Replace with your actual Render service URL
     response = bot.set_webhook(url=url)
     print(response)
 
